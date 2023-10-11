@@ -7,11 +7,13 @@ import com.ask.example.service.OrderService;
 import com.ask.example.web.reqres.CreateOrderRequest;
 import com.ask.example.web.reqres.CreateOrderResponse;
 import com.ask.example.web.reqres.GetOrderResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 public class OrderController {
 
@@ -39,6 +41,9 @@ public class OrderController {
     @RequestMapping(path = "/orders", method = RequestMethod.POST)
     public CreateOrderResponse createOrder(
             @RequestBody CreateOrderRequest createOrderRequest) {
+
+        log.info("customId = {}, amount = {}",
+                createOrderRequest.getCustomerId(), createOrderRequest.getOrderTotal());
 
         Order order = orderService.createOrder(
                 new OrderDetails(createOrderRequest.getCustomerId(),

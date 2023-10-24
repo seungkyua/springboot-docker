@@ -1,0 +1,16 @@
+#=======================================
+# openjdk:17.0.2-jdk-slim    # 473M
+# amazoncorretto:17-alpine   # 358M
+#=======================================
+FROM amazoncorretto:17-alpine
+MAINTAINER Ahn Seungkyu
+
+ARG JAR_FILE=example-0.0.1-SNAPSHOT.jar
+
+RUN mkdir -p /app
+WORKDIR /app
+
+COPY target/${JAR_FILE} /app/app.jar
+COPY scripts/run.sh .
+ENTRYPOINT ["./run.sh"]
+

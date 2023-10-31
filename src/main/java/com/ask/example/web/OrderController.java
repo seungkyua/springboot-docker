@@ -60,6 +60,11 @@ public class OrderController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping(path="/healthz")
+    public ResponseEntity<Void> healthCheck() {
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping(path="/orders/{orderId}/cancel")
     public ResponseEntity<GetOrderResponse> cancelOrder(
             @PathVariable Long orderId) {

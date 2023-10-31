@@ -51,6 +51,6 @@ COPY --chown=1000:1000 --from=build /app/target/${JAR_FILE} /app/app.jar
 COPY scripts/run.sh /app/
 
 WORKDIR /app
-EXPOSE 8080
+#EXPOSE 19090
 
 ENTRYPOINT ["./run.sh"]
